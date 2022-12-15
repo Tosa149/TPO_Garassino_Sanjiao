@@ -65,8 +65,7 @@ export default function ListaMaterias(props) {
           onChange={e => setRatingValue(e.target.value)}
         />
       </div>
-
-      {/* <FormDialog></FormDialog> */}
+      <FormDialog/>
     
       <div className="w-3/4">
 

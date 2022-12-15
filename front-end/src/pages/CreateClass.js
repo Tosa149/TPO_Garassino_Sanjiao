@@ -1,7 +1,7 @@
 import { useState} from "react";
 import { LockClosedIcon } from '@heroicons/react/20/solid'
 
-export default function CreateClass() {
+export default function CreateClass(props) {
   const [subject, setSubject] = useState("");
   const [name, setName] = useState("");
   const [typeRadio, setTypeRadio] = useState("Individual");
@@ -9,7 +9,7 @@ export default function CreateClass() {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
   const [publicRadio, setPublicRadio] = useState(true);
-  const [frecuency, setFrecuency] = useState("");
+  const [frecuency, setFrecuencyRadio] = useState("");
 
   async function handleSubmit(event) {
     let payload=  {
@@ -17,8 +17,8 @@ export default function CreateClass() {
       subject, 
       duration, 
       frecuency, 
-      price, type: 
-      typeRadio, 
+      price, 
+      type: typeRadio, 
       description, 
       public: publicRadio, 
       profesorId,
@@ -26,7 +26,7 @@ export default function CreateClass() {
     
     fetch('http://localhost:3001/api/create-class', { 
       method: "POST", 
-      body: JSON.stringify({ name: name, type }), 
+      body: JSON.stringify(payload), 
       headers: {
         'Content-Type': 'application/json'
       }

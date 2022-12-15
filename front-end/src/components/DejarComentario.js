@@ -5,9 +5,12 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { useState} from "react";
+
 
 export default function FormDialog() {
   const [open, setOpen] = React.useState(false);
+  const [content, setContent] = useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -16,6 +19,10 @@ export default function FormDialog() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  function handleSubmit(){
+  
+  }
 
   return (
     <div>
@@ -35,14 +42,14 @@ export default function FormDialog() {
                   Comentario
                 </label>
                 <input
-                  onChange={e => setEmail(e.target.value)}
-                  id="email-address"
+                  onChange={e => setContent(e.target.value)}
+                  id="content"
                   name="content"
                   type="text"
                   required
                   className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                   placeholder="Su comentario va aqui!"
-                  value={email}
+                  value={content}
                 />
               </div>
               <div>
@@ -52,7 +59,7 @@ export default function FormDialog() {
                 >
                 Comentar
               </button>
-              <button onClick={handleClose} className="rounded-lg bg-gray-600 text-white h-10">
+              <button onClick={handleClose} className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                 Cancelar
               </button>
             </div>

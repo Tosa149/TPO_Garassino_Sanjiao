@@ -67,7 +67,7 @@ function App() {
               <Register setUser={setUser} setAuth={setAuth} />
           }/>//
          <Route path="/createClass" element={
-              <CreateClass/>
+              <CreateClass user={user}/>
           }/>
           <Route path="/forgotPassword" element={
               <ForgotPassword/>

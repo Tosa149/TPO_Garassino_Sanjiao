@@ -6,10 +6,15 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { useState} from "react";
 
 export default function FormDialog() {
   const [open, setOpen] = React.useState(false);
-
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState();
+  const [schedule, setSchedule] = useState();
+  const [message, setMessage] = useState("");
+  
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -17,6 +22,8 @@ export default function FormDialog() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  function handleSubmit(){}
 
   return (
     <div>
@@ -51,14 +58,14 @@ export default function FormDialog() {
                   Telefono
                 </label>
                 <input
-                  onChange={e => setPassword(e.target.value)}
-                  id="password"
-                  name="password"
+                  onChange={e => setPhone(e.target.value)}
+                  id="Phone"
+                  name="phone"
                   type="text"
                   required
                   className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                   placeholder="0000-0000"
-                  value = {password}
+                  value = {phone}
                 />
               </div>
               <div>
@@ -66,14 +73,14 @@ export default function FormDialog() {
                   Horario
                 </label>
                 <input
-                  onChange={e => setPassword(e.target.value)}
-                  id="horario"
-                  name="horario"
+                  onChange={e => setSchedule(e.target.value)}
+                  id="schedule"
+                  name="schedule"
                   type="text"
                   required
                   className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                   placeholder="xx:xx am/pm"
-                  value = {password}
+                  value = {schedule}
                 />
               </div>
               <div>
@@ -81,14 +88,14 @@ export default function FormDialog() {
                   Mensaje
                 </label>
                 <input
-                  onChange={e => setPassword(e.target.value)}
+                  onChange={e => setMessage(e.target.value)}
                   id="message"
                   name="message"
                   type="text"
                   required
                   className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                   placeholder="dejale un mensaje al profesor!"
-                  value = {password}
+                  value = {message}
                 />
               </div>
               <div>
@@ -98,7 +105,7 @@ export default function FormDialog() {
               >
                 Contratar
               </button>
-              <button onClick={handleClose} className="rounded-lg bg-gray-600 text-white h-10">
+              <button onClick={handleClose} className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                 Cancelar
               </button>
         </div>
