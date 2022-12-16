@@ -1,5 +1,6 @@
 import { useState} from "react";
 import { LockClosedIcon } from '@heroicons/react/20/solid'
+import { useNavigate } from "react-router-dom";
 
 export default function CreateClass(props) {
   const [subject, setSubject] = useState("");
@@ -8,29 +9,38 @@ export default function CreateClass(props) {
   const [duration, setDuration] = useState(0);
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
-  const [publicRadio, setPublicRadio] = useState(true);
   const [frecuency, setFrecuencyRadio] = useState("");
+  // const [publicRadio, setPublicRadio] = useState(true);
+  const navigate = useNavigate();
 
   async function handleSubmit(event) {
-    let payload=  {
-      name, 
-      subject, 
-      duration, 
-      frecuency, 
-      price, 
-      type: typeRadio, 
-      description, 
-      public: publicRadio, 
-      profesorId,
-    }
-    
-    fetch('http://localhost:3001/api/create-class', { 
-      method: "POST", 
-      body: JSON.stringify(payload), 
-      headers: {
-        'Content-Type': 'application/json'
+    event.preventDefault();
+
+    try{
+      let payload = {
+        name, 
+        subject, 
+        duration, 
+        frecuency, 
+        price, 
+        type: typeRadio, 
+        description,
+        profesorId: props.user.profesor._id,
       }
-    });
+      
+      await fetch('http://localhost:3001/api/create-class', { 
+        method: "POST", 
+        body: JSON.stringify(payload), 
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+  
+      alert('Clase creada');
+      navigate('/my-classes')
+    } catch(err) {
+      alert('Error al crear la clase');
+    }
   }
 
   return (
@@ -47,7 +57,7 @@ export default function CreateClass(props) {
               Creando su clase
             </h2>
           </div>
-          <form className="mt-8 space-y-6" action="#" method="POST">
+          <form onSubmit={handleSubmit} className="mt-8 space-y-6">
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="-space-y-px rounded-md shadow-sm">
               <div>
@@ -127,12 +137,12 @@ export default function CreateClass(props) {
                   value = {price}
                 />
               </div>
-              <div className="flex items-center justify-between">
+{/*              <div className="flex items-center justify-between">
                 <label for="html">Publica</label>
                 <input onChange={e => setPublicRadio(e.target.value)} type="radio" id="roleRadio" name="roleRadio" value={true} />
                 <label for="html">Privado</label>
                 <input onChange={e => setPublicRadio(e.target.value)} type="radio" id="roleRadio" name="roleRadio" value={false} />
-             </div>
+  </div>*/}
             </div>
 
             <div>

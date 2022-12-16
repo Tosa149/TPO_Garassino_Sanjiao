@@ -29,6 +29,7 @@ export default function Login(props) {
     
     const response = await fetch("http://localhost:3001/api/login", fetchConfig); // El codigo se frena acá para esperar el valor
     const jsonResponse = await response.json();
+    localStorage.setItem("token.app.clases.particulares", jsonResponse.token)
 
     const userId = jwtDecode(jsonResponse.token);
     const responseUsers = await fetch("http://localhost:3001/api/users/" + userId.user.id);

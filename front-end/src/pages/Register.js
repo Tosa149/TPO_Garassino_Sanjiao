@@ -15,6 +15,7 @@
 import { useState } from "react";
 import { LockClosedIcon } from '@heroicons/react/20/solid'
 import { useNavigate } from "react-router-dom";
+import jwtDecode from "jwt-decode";
 
 
 export default function Register(props) {
@@ -89,9 +90,12 @@ export default function Register(props) {
 
       if (jsonResponse.token) {
         localStorage.setItem('token.app.clases.particulares', jsonResponse.token);
+        const decodedToken = jwtDecode(jsonResponse.token);
 
+        const fetchUser = await fetch('http://localhost:3001/api/users/'+decodedToken.user.id);
+        const fetchUserJson = await fetchUser.json();
         props.setAuth(true);
-        props.setUser(jsonResponse.user);
+        props.setUser(fetchUserJson);
         navigate("/");
       } else {
         props.setAuth(false);

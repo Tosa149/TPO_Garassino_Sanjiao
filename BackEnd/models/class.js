@@ -12,7 +12,8 @@ let Schema = new mongoose.Schema({
     description: String,
     comments: Array,
     price: Number,
-    public: Boolean, 
+    public: Boolean,
+    ratingAverage: Number
 }) 
 
 module.exports = mongoose.model("Class", Schema) 
